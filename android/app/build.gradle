@@ -11,7 +11,6 @@ project.afterEvaluate {
 }
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-tasks.whenTaskAdded { task -> if (task.name.startsWith('assemble') && task.name.endsWith("Release")) task.finalizedBy "uploadCrashlyticsSymbolFile" + task.name.substring('assemble'.length()) }
 
 
 /**
@@ -171,14 +170,14 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
              firebaseCrashlytics {
                 // Enable processing and uploading of native symbols to Crashlytics servers.
                 // This flag must be enabled to see properly-symbolicated native
                 // stack traces in the Crashlytics dashboard.
-                mappingFileUploadEnabled true
+
                 nativeSymbolUploadEnabled true
                 strippedNativeLibsDir "$buildDir/intermediates/stripped_native_libs/release/out/lib"
                 unstrippedNativeLibsDir "$buildDir/intermediates/merged_native_libs/release/out/lib"
@@ -241,5 +240,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+//tasks.whenTaskAdded { task -> if (task.name.startsWith('assemble') && task.name.endsWith("Release")) task.finalizedBy "uploadCrashlyticsSymbolFile" + task.name.substring('assemble'.length()) }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
