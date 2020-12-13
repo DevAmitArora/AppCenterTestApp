@@ -7,6 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
+    "postinstall": "npx jetify",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -77,8 +78,6 @@
     "react-native-localization": "1.0.9",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-modal-dropdown": "^0.6.2",
-    "react-native-navigation": "^6.12.2",
-    "react-native-navigation-drawer-extension": "^3.0.0",
     "react-native-parallax-scroll-view": "^0.21.3",
     "react-native-permissions": "^1.2.1",
     "react-native-popup-menu": "^0.15.6",
